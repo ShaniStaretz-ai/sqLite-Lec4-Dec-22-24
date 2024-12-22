@@ -19,5 +19,5 @@ full join cars ON drivers.car_id = cars.car_id
 
 -- full OUTER JOIN exclusive
 select drivers.*, cars.* from drivers
-full join cars ON drivers.car_id = cars.car_id where drivers.driver_id is null or drivers.car_id is null
+full join cars ON drivers.car_id = cars.car_id where drivers.driver_id is null or drivers.car_id is null;
 
