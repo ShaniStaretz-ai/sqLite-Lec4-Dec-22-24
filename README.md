@@ -6,7 +6,11 @@ JOIN
 
 * FOREIGN KEY:
     * on table A, definition you can add connection to other table B with B's primary key
-    * example:car_id INTEGER **UNIQUE**,FOREIGN KEY(car_id) REFERENCE cars(car_id)
+      example:
+    ```
+    car_id INTEGER UNIQUE,
+    FOREIGN KEY(car_id) REFERENCE cars(car_id)
+    ```
     * this relation between both tables calls 1 on 1 relation.
       meaning each row in table A can have only 1 unique id in table B
     * the UNIQUE constraint makes the **relation 1-1**:
@@ -61,6 +65,16 @@ JOIN
       full join cars ON drivers.car_id = cars.car_id 
       where drivers.driver_id is null OR drivers.car_id is null
       ```
+* CHECK constraint: in table definition, if we want to enable 1 of list (like in matchCase)
+  ```
+  sex TEXT CHECK (sex in ('M','F'))
+  ```
+* AUTOINCREMENT constraint: can define to start from other number than 1, after creating the table:
+    * when we add the constraint AUTOINCREMENT to a table, the table sqlite_sequence, is being created automatically.
+    * only with sqlite_sequence table, need to update the table to start with value:
+    * UPDATE SQLITE_SEQUENCE SET seq = 100 WHERE name = 'drivers'
+
+  
         
 
 
