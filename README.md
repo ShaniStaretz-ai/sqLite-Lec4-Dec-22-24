@@ -16,7 +16,7 @@ JOIN
     * it is NOT customary to do **a double** connection on the table B foreign key of driver_id,
       because it can make complications
 * the first table is always the "right" table and the second table is the "left table"
-* ON - when connecting the relations
+* ON - when connecting the relations, this will specify the connection between the 2 tables.
 * JOIN example:
     * INNER JOIN: return all drivers **with cars only**
       ```
@@ -47,9 +47,20 @@ JOIN
           ON drivers.car_id = cars.car_id;
           where drivers.car_id is null;
     ```
-* for RIGHT join, just replace the LEFT keyword with the RIGHT. 
+* for RIGHT join, just replace the LEFT keyword with the RIGHT.
   this will return all cars table with the relation of drivers table.
-  * meaning get all cars with/without drivers
+    * meaning get all cars with/without drivers
+* for FULL JOIN (inclusive):
+    ```
+    select drivers.*, cars.* from drivers
+    full join cars ON drivers.car_id = cars.car_id
+    ``` 
+    * FULL OUTER JOIN (exclusive):
+      ```
+      select drivers.*, cars.* from drivers
+      full join cars ON drivers.car_id = cars.car_id 
+      where drivers.driver_id is null OR drivers.car_id is null
+      ```
         
 
 
