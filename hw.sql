@@ -23,7 +23,7 @@ FULL join Lecturers on Courses.lecturer_id= Lecturers.lecturer_id;
 -- 7. get all Courses WITHOUT Lecturers and Lecturers WITHOUT Courses
 select Courses.*,Lecturers.* from Courses
 FULL join Lecturers on Courses.lecturer_id= Lecturers.lecturer_id
-where Courses.lecturer_id is NULL;
+where Courses.lecturer_id is NULL or Lecturers.lecturer_id is NULL;
 
 --8. get all Lecturers with 'i' in their name
 SELECT Lecturers.* FROM Lecturers 
@@ -82,11 +82,14 @@ left join  Departments on Employees.department_id= Departments.department_id
 WHERE Employees.department_id is NULL;
 
 -- 18. count total Employees for each department
-SELECT count(*) as total_employees from Employees;
+select  Departments.name,count(Employees.employee_id) as total_employees from Employees
+INNER join Departments on Employees.department_id=Departments.department_id
+GROUP by Employees.department_id;
 
 -- 19. find the average salary for each department
-select employee_id, avg(salary) from Employees
-GROUP by Employees.employee_id;
+select  Departments.name,avg(Employees.salary) as avg_salary from Employees
+INNER join Departments on Employees.department_id=Departments.department_id
+GROUP by Employees.department_id;
 
 --20. get the highest salary for each Department and the Employee's owner of this max salary
 SELECT Employees.name,Employees.salary from Employees 
