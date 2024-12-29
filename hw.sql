@@ -81,10 +81,10 @@ SELECT Employees.* from Employees
 left join  Departments on Employees.department_id= Departments.department_id
 WHERE Employees.department_id is NULL;
 
--- 18. count total Employees
+-- 18. count total Employees for each department
 SELECT count(*) as total_employees from Employees;
 
--- 19. find the average salary for each Employee
+-- 19. find the average salary for each department
 select employee_id, avg(salary) from Employees
 GROUP by Employees.employee_id;
 
